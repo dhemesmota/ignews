@@ -1,0 +1,1 @@
+![ignews_print](https://user-images.githubusercontent.com/26680031/114284386-e3b9bc80-9a25-11eb-9fe7-261ce112e4f6.PNG)
