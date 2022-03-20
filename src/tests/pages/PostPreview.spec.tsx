@@ -2,7 +2,7 @@ import { render, screen } from "@testing-library/react";
 import { mocked } from "jest-mock";
 import { useSession } from "next-auth/client";
 import { useRouter } from "next/router";
-import Post, { getStaticProps } from "../../pages/posts/preview/[slug]";
+import Post, { getStaticProps, getStaticPaths } from "../../pages/posts/preview/[slug]";
 import { getPrismicClient } from "../../services/prismic";
 
 const post = {
@@ -73,6 +73,8 @@ describe("Post preview page", () => {
       params: { slug: "my-new-post" },
     });
 
+    const paths = await getStaticPaths({})
+
     // Assert
     expect(response).toEqual(
       expect.objectContaining({
@@ -86,5 +88,12 @@ describe("Post preview page", () => {
         },
       })
     );
+    
+    expect(paths).toEqual(
+      expect.objectContaining({
+        paths: [],
+        fallback: 'blocking'
+      })
+    )
   });
 });

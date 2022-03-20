@@ -1,4 +1,4 @@
-import { fireEvent, render, screen } from "@testing-library/react";
+import { fireEvent, render, screen, waitFor } from "@testing-library/react";
 import { mocked } from "jest-mock";
 import { signIn, useSession } from "next-auth/client";
 import { SubscribeButton } from ".";
@@ -70,6 +70,6 @@ describe("SubscribeButton component", () => {
 
     // Assert
     expect(pushMock).toHaveBeenCalled();
-    expect(pushMock).toHaveBeenCalledWith('/posts');
+    expect(pushMock).toHaveBeenCalledWith("/posts");
   });
 });

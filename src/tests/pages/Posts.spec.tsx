@@ -64,4 +64,43 @@ describe("Posts page", () => {
       })
     );
   });
+
+  it("loads initial data no content", async () => {
+    // Arrange
+    const getPrismicClientMocked = mocked(getPrismicClient);
+
+    getPrismicClientMocked.mockReturnValueOnce({
+      query: jest.fn().mockResolvedValueOnce({
+        results: [
+          {
+            uid: 'my-new-post',
+            data: {
+              title: [
+                {type: 'heading', text: 'My new post'}
+              ],
+              content: [],
+            },
+            last_publication_date: '04-01-2022'
+          }
+        ]
+      })
+    } as any)
+
+    // Act
+    const response = await getStaticProps({});
+
+    // Assert
+    expect(response).toEqual(
+      expect.objectContaining({
+        props: {
+          posts: [{
+            slug: 'my-new-post',
+            title: 'My new post',
+            excerpt: '',
+            updatedAt: '01 de abril de 2022'
+          }],
+        },
+      })
+    );
+  });
 });
