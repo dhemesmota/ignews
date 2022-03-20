@@ -21,9 +21,9 @@ jest.mock("next-auth/client", () => {
 
 describe("Header component", () => {
   it("renders correctly", () => {
-    render(
-      <Header />
-    );
+    render(<Header />);
+
+    // screen.logTestingPlaygroundURL(); // Ver informações sobre quais tests posso fazer no component
 
     // debug();
     expect(screen.getByText("Home")).toBeInTheDocument();
